@@ -13,6 +13,7 @@ namespace Colecciones
             this.lectores = new List<Lector>();
         }
 
+        // Se agrega método el cual muestra los lectores existentes
         public void ListarLectores()
         {
             foreach (var lector in lectores)
@@ -20,6 +21,8 @@ namespace Colecciones
                 Console.WriteLine(lector);
             }
         }
+
+        // Se agrega método el cual carga lectores por defecto al iniciar el programa
         public void CargarLectores()
         {
             bool pudo;
@@ -43,6 +46,7 @@ namespace Colecciones
                 Console.WriteLine("El lector Pedro Rodriguez ya existe");
         }
 
+        // Se mueve este método desde el Main() a la clase Biblioteca
         public List<Libro> CargarLibros(int cantidad)
         {
             bool pude;
