@@ -26,7 +26,6 @@ namespace Colecciones
         public void CargarLectores()
         {
             bool pudo;
-
             pudo = AltaLector("Juan Perez", "12345678");
             if (pudo)
                 Console.WriteLine("Lector Juan Perez agregado correctamente");
@@ -44,12 +43,16 @@ namespace Colecciones
                 Console.WriteLine("Lector Pedro Rodriguez agregado correctamente");
             else
                 Console.WriteLine("El lector Pedro Rodriguez ya existe");
+            Console.WriteLine("\n");
         }
 
         // Se mueve este método desde el Main() a la clase Biblioteca
         public List<Libro> CargarLibros(int cantidad)
         {
             bool pude;
+
+            Console.WriteLine("*********************************************** \n");
+            Console.WriteLine("...Agregando libros a la biblioteca \n");
 
             for (int i = 1; i <= cantidad; i++)
             {
@@ -64,7 +67,7 @@ namespace Colecciones
                 else
                     Console.WriteLine("Libro " + i + " ya existe en biblioteca");
             }
-
+            Console.WriteLine("\n***********************************************\n");
             return libros;
         }
 
@@ -127,16 +130,19 @@ namespace Colecciones
 
         public void ListarLibros()
         {
+            Console.WriteLine("...Mostrando libros de la biblioteca \n");
             foreach (var libro in libros)
 
             {
                 Console.WriteLine(libro);
             }
+            Console.WriteLine("\n***********************************************\n");
         }
 
         //Requerimiento 1: Alta de lector
         public bool AltaLector(string nombre, string dni)
         {
+            Console.WriteLine("\n...Agregando lector a la biblioteca\n");
             bool resultado = false;
             Lector lector = BuscarLector(dni);
             if (lector == null)
@@ -151,27 +157,29 @@ namespace Colecciones
         //Requerimiento 2 :Prestamo de un libro
         public string PrestarLibro(string titulo, string dni)
         {
+            Console.WriteLine("\n***********************************************\n");
+            Console.WriteLine("\n...Prestando libro de la biblioteca\n");
             Lector lector = BuscarLector(dni);
             if (lector == null)
             {
-                return "LECTOR INEXISTENTE";
+                return "LECTOR INEXISTENTE \n";
             }
 
             if (lector.GetCantidadPrestamos() >= 3)
             {
-                return "TOPE DE PRESTAMO ALCANZADO";
+                return "TOPE DE PRESTAMO ALCANZADO \n";
             }
 
             Libro libro = BuscarLibro(titulo);
             if (libro == null)
             {
-                return "LIBRO INEXISTENTE";
+                return "LIBRO INEXISTENTE \n";
             }
 
             libros.Remove(libro);
             lector.AgregarLibro(libro); // Transfieres el libro de la biblioteca al lector[cite: 1, 2, 3]
 
-            return "PRESTAMO EXITOSO";
+            return "PRESTAMO EXITOSO \n";
         }
     }
 
