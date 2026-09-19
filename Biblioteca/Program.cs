@@ -7,24 +7,40 @@ namespace Colecciones
     {
         static void Main(string[] args)
         {
+            // instancia Biblioteca
             Biblioteca biblioteca = new Biblioteca();
 
-            // 1. Carga de datos iniciales
+            // Carga libros por defecto y los muestra
+            biblioteca.CargarLibros(10);
+            biblioteca.ListarLibros();
+
+            // Carga lectores por defecto
+            biblioteca.CargarLectores();
+
+            // intenta carga 2 libros existente 
+            biblioteca.CargarLibros(2);
+            
+            // Elimina el 'Libro5' y muestra la lista de libros existentes
+            biblioteca.EliminarLibro("Libro5");
+            biblioteca.ListarLibros();
+
+            // Agrego lector
             biblioteca.AltaLector("Juan Perez", "12345678");
-            biblioteca.AgregarLibro("Libro 1", "Autor 1", "Editorial 1");
-            biblioteca.AgregarLibro("Libro 2", "Autor 2", "Editorial 2");
-            biblioteca.AgregarLibro("Libro 3", "Autor 3", "Editorial 3");
-            biblioteca.AgregarLibro("Libro 4", "Autor 4", "Editorial 4");
+            biblioteca.ListarLectores();
 
-            // 2. Realizar 3 préstamos válidos
-            Console.WriteLine(biblioteca.PrestarLibro("Libro 1", "12345678")); // PRESTAMO EXITOSO
-            Console.WriteLine(biblioteca.PrestarLibro("Libro 2", "12345678")); // PRESTAMO EXITOSO
-            Console.WriteLine(biblioteca.PrestarLibro("Libro 3", "12345678")); // PRESTAMO EXITOSO
+            // Caso 1: Lector Inexistente
+            Console.WriteLine(biblioteca.PrestarLibro("Libro 1", "99999999")); // Retorna: LECTOR INEXISTENTE
 
-            // 3. Intentar un 4to préstamo (supera el límite)
-            Console.WriteLine(biblioteca.PrestarLibro("Libro 4", "12345678")); // TOPE DE PRESTAMO ALCANZADO
-            Console.WriteLine(biblioteca.PrestarLibro("Libro 5", "12345678")); // TOPE DE PRESTAMO ALCANZADO
-           
+            // Caso 2: Libro Inexistente
+            Console.WriteLine(biblioteca.PrestarLibro("Libro Desconocido", "12345678")); // Retorna: LIBRO INEXISTENTE
+
+            // Caso 3: Préstamos Exitosos (hasta 3)
+            Console.WriteLine(biblioteca.PrestarLibro("Libro1", "12345678")); // Retorna: PRESTAMO EXITOSO
+            Console.WriteLine(biblioteca.PrestarLibro("Libro2", "12345678")); // Retorna: PRESTAMO EXITOSO
+            Console.WriteLine(biblioteca.PrestarLibro("Libro3", "12345678")); // Retorna: PRESTAMO EXITOSO
+
+            // Caso 4: Tope Alcanzado
+            Console.WriteLine(biblioteca.PrestarLibro("Libro 4", "12345678")); // Retorna: TOPE DE PRESTAMO ALCANZADO
         }
     }
 }

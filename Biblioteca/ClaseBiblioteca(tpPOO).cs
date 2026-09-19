@@ -13,6 +13,57 @@ namespace Colecciones
             this.lectores = new List<Lector>();
         }
 
+        public void ListarLectores()
+        {
+            foreach (var lector in lectores)
+            {
+                Console.WriteLine(lector);
+            }
+        }
+        public void CargarLectores()
+        {
+            bool pudo;
+
+            pudo = AltaLector("Juan Perez", "12345678");
+            if (pudo)
+                Console.WriteLine("Lector Juan Perez agregado correctamente");
+            else
+                Console.WriteLine("El lector Juan Perez ya existe");
+
+            pudo = AltaLector("Maria Gomez", "23456789");
+            if (pudo)
+                Console.WriteLine("Lector Maria Gomez agregado correctamente");
+            else
+                Console.WriteLine("La lectora Maria Gomez ya existe");
+
+            pudo = AltaLector("Pedro Rodriguez", "34567890");
+            if (pudo)
+                Console.WriteLine("Lector Pedro Rodriguez agregado correctamente");
+            else
+                Console.WriteLine("El lector Pedro Rodriguez ya existe");
+        }
+
+        public List<Libro> CargarLibros(int cantidad)
+        {
+            bool pude;
+
+            for (int i = 1; i <= cantidad; i++)
+            {
+                pude = AgregarLibro(
+                    "Libro" + i,
+                    "Autor" + i,
+                    "Editorial" + i
+                );
+
+                if (pude)
+                    Console.WriteLine("Libro " + i + " agregado correctamente");
+                else
+                    Console.WriteLine("Libro " + i + " ya existe en biblioteca");
+            }
+
+            return libros;
+        }
+
         //Encapsulamiento
         private Libro BuscarLibro(string titulo)
         {
@@ -99,18 +150,18 @@ namespace Colecciones
             Lector lector = BuscarLector(dni);
             if (lector == null)
             {
-                return "LECTOR INEXISTENTE"; // En mayúsculas según la consigna[cite: 2]
+                return "LECTOR INEXISTENTE";
             }
 
             if (lector.GetCantidadPrestamos() >= 3)
             {
-                return "TOPE DE PRESTAMO ALCANZADO"; // Limita a máximo 3 libros[cite: 2, 3]
+                return "TOPE DE PRESTAMO ALCANZADO";
             }
 
             Libro libro = BuscarLibro(titulo);
             if (libro == null)
             {
-                return "LIBRO INEXISTENTE"; // En mayúsculas según la consigna[cite: 2]
+                return "LIBRO INEXISTENTE";
             }
 
             libros.Remove(libro);

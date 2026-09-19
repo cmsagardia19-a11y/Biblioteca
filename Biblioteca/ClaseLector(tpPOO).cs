@@ -22,6 +22,11 @@ namespace Colecciones
             return dni;
         }
 
+        public string GetNombre()
+        {
+            return nombre;
+        }
+
         public int GetCantidadPrestamos()
         {
             return librosEnPrestamo.Count; // Mide cuántos libros tiene asignados actualmente[cite: 1, 6]
@@ -36,5 +41,6 @@ namespace Colecciones
         {
             return $"Lector:{nombre} | DNI:{dni} | Libros Prestados{librosEnPrestamo.Count}";
         }
+
     }
 }
