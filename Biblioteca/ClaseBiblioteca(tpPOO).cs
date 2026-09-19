@@ -13,6 +13,57 @@ namespace Colecciones
             this.lectores = new List<Lector>();
         }
 
+        public void ListarLectores()
+        {
+            foreach (var lector in lectores)
+            {
+                Console.WriteLine(lector);
+            }
+        }
+        public void CargarLectores()
+        {
+            bool pudo;
+
+            pudo = AltaLector("Juan Perez", "12345678");
+            if (pudo)
+                Console.WriteLine("Lector Juan Perez agregado correctamente");
+            else
+                Console.WriteLine("El lector Juan Perez ya existe");
+
+            pudo = AltaLector("Maria Gomez", "23456789");
+            if (pudo)
+                Console.WriteLine("Lector Maria Gomez agregado correctamente");
+            else
+                Console.WriteLine("La lectora Maria Gomez ya existe");
+
+            pudo = AltaLector("Pedro Rodriguez", "34567890");
+            if (pudo)
+                Console.WriteLine("Lector Pedro Rodriguez agregado correctamente");
+            else
+                Console.WriteLine("El lector Pedro Rodriguez ya existe");
+        }
+
+        public List<Libro> CargarLibros(int cantidad)
+        {
+            bool pude;
+
+            for (int i = 1; i <= cantidad; i++)
+            {
+                pude = AgregarLibro(
+                    "Libro" + i,
+                    "Autor" + i,
+                    "Editorial" + i
+                );
+
+                if (pude)
+                    Console.WriteLine("Libro " + i + " agregado correctamente");
+                else
+                    Console.WriteLine("Libro " + i + " ya existe en biblioteca");
+            }
+
+            return libros;
+        }
+
         //Encapsulamiento
         private Libro BuscarLibro(string titulo)
         {
@@ -100,27 +151,27 @@ namespace Colecciones
             Lector lector = BuscarLector(dni);
             if (lector == null)
             {
-                return "Lector inexistente";
+                return "LECTOR INEXISTENTE";
             }
 
             //Validar si los prestamos supera el máximo (3)
             if (lector.GetCantidadPrestamos() >= 3)
             {
-                return "Tope de prestamos Alcanzado";
+                return "TOPE DE PRESTAMO ALCANZADO";
             }
 
             //Validar si el libro existe en la biblioteca
             Libro libro = BuscarLibro(titulo);
             if (libro == null)
             {
-                return "Libro Inexistente en la Biblioteca";
+                return "LIBRO INEXISTENTE";
             }
 
             //Proceso de transferencia física/lógica del libro
             libros.Remove(libro);
             lector.AgregarLibro(libro); //el libro se le presta al lector
 
-            return "Prestamo Exitoso";
+            return "PRESTAMO EXITOSO";
         }
     }
 

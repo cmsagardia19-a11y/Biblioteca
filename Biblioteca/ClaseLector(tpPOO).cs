@@ -22,6 +22,11 @@ namespace Colecciones
             return dni;
         }
 
+        public string GetNombre()
+        {
+            return nombre;
+        }
+
         public int GetCantidadPrestamos()
         {
             return librosEnPrestamo.Count;
@@ -36,6 +41,7 @@ namespace Colecciones
         {
             return $"Lector:{nombre} | DNI:{dni} | Libros Prestados{librosEnPrestamo.Count}";
         }
+
     }
 }
 
