@@ -29,12 +29,12 @@ namespace Colecciones
 
         public int GetCantidadPrestamos()
         {
-            return librosEnPrestamo.Count;
+            return librosEnPrestamo.Count; // Mide cuántos libros tiene asignados actualmente[cite: 1, 6]
         }
 
         public void AgregarLibro(Libro libro)
         {
-            librosEnPrestamo.Add(libro);
+            librosEnPrestamo.Add(libro); // Agrega el libro a la lista del lector[cite: 1, 6]
         }
 
         public override string ToString()
@@ -44,5 +44,3 @@ namespace Colecciones
 
     }
 }
-
-

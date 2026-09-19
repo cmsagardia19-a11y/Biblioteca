@@ -147,29 +147,25 @@ namespace Colecciones
         //Requerimiento 2 :Prestamo de un libro
         public string PrestarLibro(string titulo, string dni)
         {
-            //validar si el lector existe
             Lector lector = BuscarLector(dni);
             if (lector == null)
             {
                 return "LECTOR INEXISTENTE";
             }
 
-            //Validar si los prestamos supera el máximo (3)
             if (lector.GetCantidadPrestamos() >= 3)
             {
                 return "TOPE DE PRESTAMO ALCANZADO";
             }
 
-            //Validar si el libro existe en la biblioteca
             Libro libro = BuscarLibro(titulo);
             if (libro == null)
             {
                 return "LIBRO INEXISTENTE";
             }
 
-            //Proceso de transferencia física/lógica del libro
             libros.Remove(libro);
-            lector.AgregarLibro(libro); //el libro se le presta al lector
+            lector.AgregarLibro(libro); // Transfieres el libro de la biblioteca al lector[cite: 1, 2, 3]
 
             return "PRESTAMO EXITOSO";
         }
